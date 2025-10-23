@@ -1,6 +1,6 @@
 <?php
     require("conexionBD.php");
-    $conexion=abrir_conexion("localhost", "root", "", "isaac");
+    $conexion=abrir_conexion("localhost", "root", "MySQL", "isaac");
     $consulta="SELECT * from items";
     $query=mysqli_query($conexion,$consulta);
 ?>
@@ -8,8 +8,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista items</title>
+
 </head>
 <body>
     <h1>Lista de items</h1>
