@@ -26,6 +26,31 @@ if (strlen($nombre) < 2 || strlen($nombre) > 100) {
 } else {
     echo "nombre no valido";
 }
+
+//max 500 caracter en efecto
+if(strlen($efecto)>= 500){
+
+    echo " Demasiados caracter";
+
+}else{
+    echo "estas en el rango";
+}
+
+//valida si el danho es numerico
+if(!is_numeric($danho)){
+
+    echo "Tiene que ser numerico";
+
+    //valida si el danho es mayor o igual a 0
+}elseif($danho <= 0 ){
+
+    echo "debe ser mayor o igual a 0";
+}else{
+
+    echo "done sin problema ";
+}
+
+
 // selecciona el tipo desde la base de datos
  $result = $conn->query("SELECT tipo from items");
  

@@ -1,5 +1,7 @@
 <?php
 
+
+
 function abrir_conexion($host,$usuario,$pass,$bd){
 	$conexion=mysqli_connect($host,$usuario,$pass,$bd);
 	if($conexion){
