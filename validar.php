@@ -47,6 +47,9 @@ if(!is_numeric($danho)){
     echo "debe ser mayor o igual a 0";
 }else{
 
-    echo "done sin problema ";
+    echo " done sin problema ";
 }
+
+
+
 ?>

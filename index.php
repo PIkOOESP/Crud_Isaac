@@ -1,10 +1,5 @@
 <?php
 include ("conexionBD.php");
-$conexion=abrir_conexion("localhost","root","","isaac");
-?>
-<?php
-// metodo post
-$is_post = $_SERVER['REQUEST_METHOD'] === 'POST';
 
 // trim en todos los campos
 $nombre  = trim($_POST['nombre']  ?? '');
@@ -64,14 +59,14 @@ if(!empty($error)){
     <h1>Registro objetos TBOI</h1>
 
     <div>
-        <form action="index.php" method="post">
+        <form action="validar.php" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" required/>
-            <?php echo !empty($_POST)? "<p>" . $error['nombre'] . "</p>" : "" ?>
+             <?php echo !empty($_POST)? "<p>" . $error['nombre'] . "</p>" : "" ?>
 
             <label for="efecto">Efecto</label>
             <textarea name="efecto" id="efecto"required></textarea>
-            <?php echo !empty($_POST)? "<p>" . $error['efecto'] . "</p>" : "" ?>
+             <?php echo !empty($_POST)? "<p>" . $error['efecto'] . "</p>" : "" ?>
 
             <label for="tipo">Tipo</label>
             <select name="tipo" id="tipo" >
@@ -81,7 +76,6 @@ if(!empty($error)){
                 <option value="Carta">Carta</option>
                 <option value="Trinkets">Trinkets</option>
             </select>
-            <?php echo !empty($_POST)? "<p>" . $error['tipo'] . "</p>" : "" ?>
 
             <label for="danho">Daño extra</label>
             <input type="number" name="danho" id="dahno" required>
