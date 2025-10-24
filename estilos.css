@@ -153,3 +153,68 @@ div {
 .boton_lista a:active{
     transform: scale(0.95);
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2a2a2a;
+    border: 4px solid #5c0a0a;
+    box-shadow: 0 0 15px #000000aa;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    color: #f0e6d2;
+    margin-top: 1rem;
+}
+
+table tr:first-child {
+    background-color: #5c0a0a;
+    color: #ffcc99;
+    text-shadow: 1px 1px #000;
+}
+
+td {
+    padding: 0.6rem;
+    border: 1px solid #3a3a3a;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr:nth-child(even) {
+    background-color: #3a3a3a;
+}
+
+tr:hover {
+    background-color: #4a0a0a;
+    transition: background-color 0.2s ease;
+}
+
+/* Enlaces de edición */
+a {
+    color: #ff6666;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ff0000;
+    text-shadow: 0 0 5px #ff0000aa;
+}
+
+/* Contenedor */
+div {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #1c1c1caa;
+    border-radius: 8px;
+}
+
+/* Título */
+h1 {
+    color: #ffcc99;
+    text-shadow: 2px 2px #5c0a0a;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px dashed #8b0000;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
