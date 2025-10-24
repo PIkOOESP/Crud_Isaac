@@ -1,6 +1,6 @@
 <?php
     require("conexionBD.php");
-    $conexion=abrir_conexion("localhost", "root", "MySQL", "isaac");
+    $conexion=abrir_conexion("localhost", "root", "", "isaac");
     $consulta="SELECT * from items";
     $query=mysqli_query($conexion,$consulta);
 ?>
@@ -17,11 +17,9 @@
 <body>
     <h1>Lista de items</h1>
     <?php
-        while($row=mysqli_fetch_assoc($query)){
-            echo "<div>
-                <h6>" . $row['nombre'] . "</h6>
-            </div>";
-        }
+            while($key = mysqli_fetch_assoc( $query)){
+                echo "<tr><td>".$key['nombre']."</td><td>".$key['tipo']."</td><td>".$key['efecto']."</td><td>".$key['danho_extra']."</td><td><a href='formularioEditar.php?id_item=".$key['id_item']."'>Editar</a></td></tr>";
+            }
     ?>
 </body>
 </html>

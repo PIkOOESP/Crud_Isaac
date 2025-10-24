@@ -9,8 +9,11 @@ $efecto = trim($_POST['efecto'] ?? '');
 $danho = trim($_POST['danho'] ?? '');
 $tipo = $_POST['tipo'] ?? '';
 
+$errores = 0;
+
 if(!isset($_POST['tipo']) || empty($_POST['tipo'])){
     $error['tipo'] = "no seleccionaste nada";
+    $errores++;
 } else {
     $error['tipo'] = "";
 }
@@ -20,11 +23,13 @@ if (strlen($nombre) > 2 && strlen($nombre) < 100) {
     $error['nombre'] = "";
 } else {
     $error['nombre'] = "nombre no valido";
+    $errores++;
 }
 
 //max 500 caracter en efecto
 if(strlen($efecto)>= 500){
     $error['efecto'] = " Demasiados caracter";
+    $errores++;
 } else {
     $error["efecto"] = "";
 }
@@ -32,14 +37,16 @@ if(strlen($efecto)>= 500){
 //valida si el danho es numerico
 if(!is_numeric($danho)){
     $error['danho'] = "Tiene que ser numerico";
+    $errores++;
     //valida si el danho es mayor o igual a 0
 }elseif($danho <= 0 ){
     $error['danho'] = "debe ser mayor o igual a 0";
+    $errores++;
 } else{
     $error["danho"] = "";
 }
 
-if(!empty($error)){
+if($errores == 0){
     $consulta = "INSERT INTO items (nombre, efecto, tipo,danho_extra) values ('" . $nombre . "','" . $efecto . "','" . $tipo . "','" . $danho . "')";
     if(mysqli_query($conexion,$consulta)){
 
@@ -61,7 +68,7 @@ if(!empty($error)){
     <h1>Registro objetos TBOI</h1>
 
     <div>
-        <form action="validar.php" method="post">
+        <form action="index.php" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" required/>
              <?php echo !empty($_POST)? "<p>" . $error['nombre'] . "</p>" : "" ?>
