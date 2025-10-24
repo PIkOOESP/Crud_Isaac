@@ -82,7 +82,7 @@ if($errores == 0){
     <h1>Editar</h1>
 
     <div>
-        <form action="">
+        <form action="editar.php" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" required value="<?php echo $datos['nombre']?>"/>
 
