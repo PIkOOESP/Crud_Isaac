@@ -28,7 +28,7 @@
             </tr>
             <?php
                     while($key = mysqli_fetch_assoc( $query)){
-                        echo "<tr><td>".$key['nombre']."</td><td>".$key['tipo']."</td><td>".$key['efecto']."</td><td>".$key['danho_extra']."</td><td><a href='formularioEditar.php?id_item=".$key['id_item']."'>Editar</a></td></tr>";
+                        echo "<tr><td>".$key['nombre']."</td><td>".$key['tipo']."</td><td>".$key['efecto']."</td><td>".$key['danho_extra']."</td><td><a href='editar.php?id_item=".$key['id_item']."'>Editar</a></td></tr>";
                     }
             ?>
         </table>

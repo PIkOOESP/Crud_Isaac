@@ -9,41 +9,40 @@ $efecto = trim($_POST['efecto'] ?? '');
 $danho = trim($_POST['danho'] ?? '');
 $tipo = $_POST['tipo'] ?? '';
 
-$errores = 0;
+$errores = 4;
 
 if(!isset($_POST['tipo']) || empty($_POST['tipo'])){
     $error['tipo'] = "no seleccionaste nada";
-    $errores++;
 } else {
     $error['tipo'] = "";
+    $errores--;
 }
 
 //valida el minimo de caracter en letras
 if (strlen($nombre) > 2 && strlen($nombre) < 100) {
     $error['nombre'] = "";
+    $errores--;
 } else {
     $error['nombre'] = "nombre no valido";
-    $errores++;
 }
 
 //max 500 caracter en efecto
 if(strlen($efecto)>= 500){
     $error['efecto'] = " Demasiados caracter";
-    $errores++;
 } else {
     $error["efecto"] = "";
+    $errores--;
 }
 
 //valida si el danho es numerico
 if(!is_numeric($danho)){
     $error['danho'] = "Tiene que ser numerico";
-    $errores++;
     //valida si el danho es mayor o igual a 0
 }elseif($danho <= 0 ){
     $error['danho'] = "debe ser mayor o igual a 0";
-    $errores++;
 } else{
     $error["danho"] = "";
+    $errores--;
 }
 
 if($errores == 0){
