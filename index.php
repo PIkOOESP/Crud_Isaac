@@ -10,18 +10,19 @@ $is_post = $_SERVER['REQUEST_METHOD'] === 'POST';
 $nombre  = trim($_POST['nombre']  ?? '');
 $efecto = trim($_POST['efecto'] ?? '');
 $danho = trim($_POST['danho'] ?? '');
+$tipo = $_POST['tipo'] ?? '';
 
 if(!isset($_POST['tipo']) || empty($_POST['tipo'])){
     $error['tipo'] = "no seleccionaste nada";
 } else {
     $error['tipo'] = "";
 }
+
 //valida el minimo de caracter en letras
-if (strlen($nombre) < 2 || strlen($nombre) > 100) {
+if (strlen($nombre) > 2 && strlen($nombre) < 100) {
     $error['nombre'] = "";
 } else {
     $error['nombre'] = "nombre no valido";
-    var_dump($nombre);
 }
 
 //max 500 caracter en efecto
@@ -40,6 +41,15 @@ if(!is_numeric($danho)){
 } else{
     $error["danho"] = "";
 }
+
+if(!empty($error)){
+    $consulta = "INSERT INTO items (nombre, efecto, tipo,danho_extra) values ('" . $nombre . "','" . $efecto . "','" . $tipo . "','" . $danho . "')";
+    if(mysqli_query($conexion,$consulta)){
+
+    } else{
+        echo "Error al subir ";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +61,7 @@ if(!is_numeric($danho)){
     <title>Registro Items</title>
 </head>
 <body>
-        <h1>Registro objetos TBOI</h1>
+    <h1>Registro objetos TBOI</h1>
 
     <div>
         <form action="index.php" method="post">
@@ -74,11 +84,15 @@ if(!is_numeric($danho)){
             <?php echo !empty($_POST)? "<p>" . $error['tipo'] . "</p>" : "" ?>
 
             <label for="danho">Daño extra</label>
-            <input type="text" name="danho" id="dahno" required>
+            <input type="number" name="danho" id="dahno" required>
             <?php echo !empty($_POST)? "<p>" . $error['danho'] . "</p>" : "" ?>
             
             <input type="submit">
         </form>
+    </div>
+
+    <div>
+        <a href="lista.php">Mostrar listado</a>
     </div>
 </body>
 </html>
