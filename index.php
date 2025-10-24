@@ -1,6 +1,8 @@
 <?php
 include ("conexionBD.php");
 
+$conexion = abrir_conexion("localhost", "root", "","isaac");
+
 // trim en todos los campos
 $nombre  = trim($_POST['nombre']  ?? '');
 $efecto = trim($_POST['efecto'] ?? '');
@@ -85,7 +87,7 @@ if(!empty($error)){
         </form>
     </div>
 
-    <div>
+    <div class="boton_lista">
         <a href="lista.php">Mostrar listado</a>
     </div>
 </body>
