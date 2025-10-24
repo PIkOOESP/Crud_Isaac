@@ -16,10 +16,22 @@
 </head>
 <body>
     <h1>Lista de items</h1>
-    <?php
-            while($key = mysqli_fetch_assoc( $query)){
-                echo "<tr><td>".$key['nombre']."</td><td>".$key['tipo']."</td><td>".$key['efecto']."</td><td>".$key['danho_extra']."</td><td><a href='formularioEditar.php?id_item=".$key['id_item']."'>Editar</a></td></tr>";
-            }
-    ?>
+
+    <div>
+        <table>
+            <tr>
+                <td>Nombre</td>
+                <td>Tipo</td>
+                <td>Efecto</td>
+                <td>Daño extra</td>
+                <td> </td>
+            </tr>
+            <?php
+                    while($key = mysqli_fetch_assoc( $query)){
+                        echo "<tr><td>".$key['nombre']."</td><td>".$key['tipo']."</td><td>".$key['efecto']."</td><td>".$key['danho_extra']."</td><td><a href='formularioEditar.php?id_item=".$key['id_item']."'>Editar</a></td></tr>";
+                    }
+            ?>
+        </table>
+    </div>
 </body>
 </html>

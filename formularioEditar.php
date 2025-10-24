@@ -3,7 +3,7 @@ if(!empty($_GET)){
     $editar=$_GET;
 }
 include ("conexionBD.php");
-$conexion=abrir_conexion("localhost", "root", "MySQL", "isaac");
+$conexion=abrir_conexion("localhost", "root", "", "isaac");
 if(isset($editar)){
     $consulta="SELECT id_item, nombre, tipo, efecto, danho_extra from items where id_item=".$editar['id_item'];
     $query_datos=mysqli_query($conexion, $consulta);
