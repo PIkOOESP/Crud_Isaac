@@ -51,11 +51,4 @@ if(!is_numeric($danho)){
 }
 
 
-// selecciona el tipo desde la base de datos
- $result = $conn->query("SELECT tipo from items");
- 
-        while ($row = $result->fetch_assoc()) {
-
-            echo "<option value='{$row['tipos']}'></option>";
-        }
 ?>

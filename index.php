@@ -3,6 +3,10 @@ include ("conexionBD.php");
 
 
 $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
+
+
+
+
 ?>
 
 <!DOCTYPE html>
