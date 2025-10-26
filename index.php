@@ -3,10 +3,6 @@ include ("conexionBD.php");
 
 
 $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -18,15 +14,17 @@ $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
     <title>Registro Items</title>
 </head>
 <body>
-        <h1>Registro objetos TBOI</h1>
+    <h1>Registro objetos TBOI</h1>
 
     <div>
-        <form action="validar.php" method="post">
+        <form action="index.php" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" required/>
+             <?php echo !empty($_POST)? "<p>" . $error['nombre'] . "</p>" : "" ?>
 
             <label for="efecto">Efecto</label>
             <textarea name="efecto" id="efecto"required></textarea>
+             <?php echo !empty($_POST)? "<p>" . $error['efecto'] . "</p>" : "" ?>
 
             <label for="tipo">Tipo</label>
             <select name="tipo" id="tipo" >
@@ -38,10 +36,15 @@ $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
             </select>
 
             <label for="danho">Daño extra</label>
-            <input type="text" name="danho" id="dahno" required>
+            <input type="number" name="danho" id="dahno" required>
+            <?php echo !empty($_POST)? "<p>" . $error['danho'] . "</p>" : "" ?>
             
             <input type="submit">
         </form>
+    </div>
+
+    <div class="boton_lista">
+        <a href="lista.php">Mostrar listado</a>
     </div>
 </body>
 </html>
