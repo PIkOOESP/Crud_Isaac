@@ -19,7 +19,7 @@ if(!isset($_POST['tipo']) || empty($_POST['tipo'])){
 
 }
 //valida el minimo de caracter en letras
-if (strlen($nombre) < 2 || strlen($nombre) > 100) {
+if (strlen($nombre) >= 2 || strlen($nombre) <= 100) {
 
     echo "nombre valido";
 
