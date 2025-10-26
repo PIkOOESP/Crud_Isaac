@@ -1,8 +1,15 @@
 <?php
-include ("conexionBD.php");
+include_once ("conexionBD.php");
 
 
 $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
+
+$error = [
+    'nombre' => '',
+    'efecto' => '',
+    'danho' => ''
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +24,7 @@ $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
     <h1>Registro objetos TBOI</h1>
 
     <div>
-        <form action="index.php" method="post">
+        <form action="validar.php" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" required/>
              <?php echo !empty($_POST)? "<p>" . $error['nombre'] . "</p>" : "" ?>
@@ -43,7 +50,7 @@ $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
         </form>
     </div>
 
-    <div class="boton_lista">
+        <div class="boton_lista">
         <a href="lista.php">Mostrar listado</a>
     </div>
 </body>

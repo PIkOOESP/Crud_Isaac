@@ -3,6 +3,8 @@
 
 //conexion
 include ("conexionBD.php");
+$conexion = abrir_conexion("127.0.0.1", "alex1", "root", "isaac");
+
 
 // metodo post
 $is_post = $_SERVER['REQUEST_METHOD'] === 'POST';
@@ -10,6 +12,10 @@ $is_post = $_SERVER['REQUEST_METHOD'] === 'POST';
 // trim en todos los campos
 $nombre  = trim($_POST['nombre']  ?? '');
 $efecto = trim($_POST['efecto'] ?? '');
+/**
+ *Daba error al insertar porque no estaba esta opcion
+ */
+$tipo = $_POST['tipo'] ?? '';
 $danho = trim($_POST['danho'] ?? '');
 
 
@@ -49,6 +55,21 @@ if(!is_numeric($danho)){
 
     echo "done sin problema ";
 }
+
+    /*
+        # No tenimamos la opcion de insertar la base de datos ahora si
+    */
+    if (empty($error['nombre']) && empty($error['efecto']) && empty($error['danho'])) {
+        $sql = "INSERT INTO items (nombre, efecto, tipo, danho_extra)
+                VALUES ('$nombre', '$efecto', '$tipo', $danho)";
+
+        if (mysqli_query($conexion, $sql)) {
+            echo "<p style='color:green;'>Item insertado correctamente ✅</p>";
+        } else {
+            echo "<p style='color:red;'>Error al insertar: " . mysqli_error($conexion) . "</p>";
+        }
+    }
+
 
 
 ?>

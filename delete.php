@@ -1,10 +1,18 @@
 <?php
-include('conexionBD.php');
-include('lista.php');
+include_once('conexionBD.php');
+include_once('lista.php');
 
 
 
-$del = "Delete from isaac where id_item=".$_GET['id'];
+if(isset($_GET['id'])){
+
+/*
+    #Problema en la consulta
+    #Solucionado
+
+*/
+
+$del = "Delete from items where id_item=".$_GET['id'];
 
 if(mysqli_query($conexion,$del)){
 
@@ -13,7 +21,9 @@ if(mysqli_query($conexion,$del)){
 
     echo "Problema en el borrado ";
 }
-
+}else{
+    echo "Erron de id";
+}
 ?>
 
 
