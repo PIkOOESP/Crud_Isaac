@@ -7,7 +7,7 @@ if(!empty($_GET)){
 }
 
 include ("conexionBD.php");
-$conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
+$conexion=abrir_conexion("localhost","root","","isaac");
 
 if(!empty($editar)){
     $consulta="SELECT id_item, nombre, tipo, efecto, danho_extra from items where id_item=".$editar['id_item'];

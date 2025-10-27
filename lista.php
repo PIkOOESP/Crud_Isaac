@@ -3,7 +3,7 @@
 
     include_once('delete.php');
     
-    $conexion=abrir_conexion("127.0.0.1","alex1","root","isaac");
+    $conexion=abrir_conexion("localhost","root","","isaac");
     $consulta="SELECT * from items";
     $query=mysqli_query($conexion,$consulta);
 ?>
@@ -19,20 +19,28 @@
 </head>
 <body>
     <h1>Lista de items</h1>
-    <?php
-        while($row=mysqli_fetch_assoc($query)){?>
-
-            <div>
-                <?= $row['nombre']; ?>
-            
-                <a href="delete.php?id=<?= $row['id_item']; ?>">Eliminar</a>
-            </div>";
-        <?php }
-        /*
-            #Podriamos añadir el boton de editar aqui como lo haciamos con carlos
-
-            #He añadido el boton a lado de eliminar, mas comodo
-        */
+    <div>
+        <table>
+            <tr>
+                <td>Nombre</td>
+                <td>Tipo</td>
+                <td>Efecto</td>
+                <td>Daño extra</td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <?php
+                    while($key = mysqli_fetch_assoc( $query)){
+                        echo "<tr>
+                            <td>".$key['nombre']."</td>
+                            <td>".$key['tipo']."</td>
+                            <td>".$key['efecto']."</td>
+                            <td>".$key['danho_extra']."</td>
+                            <td><a href='editar.php?id_item=".$key['id_item']."'>Editar</a></td>
+                            <td><a href='delete.php?id=". $key['id_item'] ."'>Eliminar</a></td></tr>";
+                    }
             ?>
+        </table>
+    </div>           
 </body>
 </html>
