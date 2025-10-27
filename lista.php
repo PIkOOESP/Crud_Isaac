@@ -18,6 +18,7 @@
 
 </head>
 <body>
+    <a href="index.php">Inicio</a>
     <h1>Lista de items</h1>
     <div>
         <table>

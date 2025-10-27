@@ -94,9 +94,10 @@ if($errores == 0){
             <?php echo !empty($_POST)? "<p>" . $error['danho'] . "</p>" : "" ?>
             
             <input type="submit">
+            <br>
             <?php
                 if(isset($correcto)){
-                    echo $correcto;
+                    echo "<p>" . $correcto . "</p>";
                 }
             ?>
         </form>
