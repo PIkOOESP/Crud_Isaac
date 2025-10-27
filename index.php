@@ -51,7 +51,7 @@ if(!is_numeric($danho)){
 if($errores == 0){
     $consulta = "INSERT INTO items (nombre, efecto, tipo,danho_extra) values ('" . $nombre . "','" . $efecto . "','" . $tipo . "','" . $danho . "')";
     if(mysqli_query($conexion,$consulta)){
-
+        $correcto = "Añadido correctamente";
     } else{
         echo "Error al subir ";
     }
@@ -94,6 +94,11 @@ if($errores == 0){
             <?php echo !empty($_POST)? "<p>" . $error['danho'] . "</p>" : "" ?>
             
             <input type="submit">
+            <?php
+                if(isset($correcto)){
+                    echo $correcto;
+                }
+            ?>
         </form>
     </div>
 
