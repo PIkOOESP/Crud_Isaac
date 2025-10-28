@@ -7,12 +7,15 @@ $conexion=abrir_conexion("localhost","root","","isaac");
 $conexion = abrir_conexion("localhost", "root", "","isaac");
 
 // trim en todos los campos
-$nombre  = trim($_POST['nombre']  ?? '');
-$efecto = trim($_POST['efecto'] ?? '');
+$nombre  = filter_var(trim($_POST['nombre']  ?? ''),FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+$efecto = filter_var(trim($_POST['efecto'] ?? ''),FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $danho = trim($_POST['danho'] ?? '');
 $tipo = $_POST['tipo'] ?? '';
 
 $errores = 4;
+
+$nombre = htmlspecialchars($nombre, ENT_QUOTES, "UTF-8");
+$efecto = htmlspecialchars($efecto, ENT_QUOTES, "UTF-8");
 
 if(!isset($_POST['tipo']) || empty($_POST['tipo'])){
     $error['tipo'] = "no seleccionaste nada";
@@ -30,7 +33,7 @@ if (strlen($nombre) > 2 && strlen($nombre) < 100) {
 }
 
 //max 500 caracter en efecto
-if(strlen($efecto)>= 500){
+if(strlen($efecto) >= 500){
     $error['efecto'] = " Demasiados caracter";
 } else {
     $error["efecto"] = "";
@@ -77,7 +80,7 @@ if($errores == 0){
              <?php echo !empty($_POST)? "<p>" . $error['nombre'] . "</p>" : "" ?>
 
             <label for="efecto">Efecto</label>
-            <textarea name="efecto" id="efecto"required></textarea>
+            <textarea name="efecto" id="efecto" required></textarea>
              <?php echo !empty($_POST)? "<p>" . $error['efecto'] . "</p>" : "" ?>
 
             <label for="tipo">Tipo</label>

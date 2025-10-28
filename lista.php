@@ -1,7 +1,5 @@
 <?php
     require_once("conexionBD.php");
-
-    include_once('delete.php');
     
     $conexion=abrir_conexion("localhost","root","","isaac");
     $consulta="SELECT * from items";

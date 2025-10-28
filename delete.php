@@ -3,7 +3,7 @@ include_once('conexionBD.php');
 $conexion=abrir_conexion("localhost","root","","isaac");
 
 
-if(isset($_GET['id'])){
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
 
 /*
     #Problema en la consulta
@@ -21,6 +21,8 @@ if(mysqli_query($conexion,$del)){
 
     echo "Problema en el borrado ";
 }
+} else{
+    header("Location:lista.php");
 }
 ?>
 

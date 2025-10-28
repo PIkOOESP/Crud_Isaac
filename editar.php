@@ -1,9 +1,10 @@
 <?php 
 // recibe los datos para editar 
-if(!empty($_GET)){
+if(!empty($_GET) && is_numeric($_GET['id_item'])){
     $editar=$_GET;
 } else{
     $editar= "";
+    header("Location:lista.php");
 }
 
 include ("conexionBD.php");
@@ -16,10 +17,13 @@ if(!empty($editar)){
 }
 
 // recibe los datos para rellenar la insercion
-$nombre  = trim($_POST['nombre']  ?? '');
-$efecto = trim($_POST['efecto'] ?? '');
+$nombre  = filter_var(trim($_POST['nombre']  ?? ''),FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+$efecto = filter_var(trim($_POST['efecto'] ?? ''),FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $danho = trim($_POST['danho'] ?? '');
 $tipo = $_POST['tipo'] ?? '';
+
+$nombre = htmlspecialchars($nombre, ENT_QUOTES, "UTF-8");
+$efecto = htmlspecialchars($efecto, ENT_QUOTES, "UTF-8");
 
 $errores = 4;
 
@@ -60,7 +64,7 @@ if(!is_numeric($danho)){
 
 if($errores == 0){
     $item=$_POST;
-    $editado="update items set nombre=".$item['nombre'].", tipo=".$item['tipo'].", efecto=".$item['efecto'].", danho_extra=".$item['danho']." where id=".$item['id'].";";
+    $editado="update items set nombre='".$nombre."', tipo='".$tipo."', efecto='".$efecto."', danho_extra='".$danho."' where id_item=".$_GET['id_item'].";";
     $consulta=mysqli_query($conexion, $editado);
     if($consulta){
         echo "El registro se ha editado correctamente";
@@ -82,7 +86,7 @@ if($errores == 0){
     <h1>Editar</h1>
 
     <div>
-        <form action="editar.php" method="post">
+        <form action="editar.php?id_item=<?php echo $editar['id_item'] ?>" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre" required value="<?php echo $datos['nombre']?>"/>
 
